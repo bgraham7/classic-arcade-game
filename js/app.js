@@ -3,7 +3,7 @@ var Enemy = function() {
     // Random left or right start
     this.direction = Math.random() > .5 ? 'toRight' : 'toLeft'
     // Going Right starts on Left and visa versa
-    this.x = this.direction == 'toRight'? 0 : 404;
+    this.x = this.direction == 'toRight'? -101 : 505;
     // Picks a random row between 1 and 3
     this.y =  Math.floor((Math.random() * 3) + 1) * 83;
     // Picks a random speed between 1 and 5 tiles per second
@@ -17,8 +17,18 @@ Enemy.prototype.update = function(dt) {
     distance = dt * this.speed * 101;
     if(this.direction === 'toRight') {
         this.x += distance;
+        if(this.x > 600) {
+            var index = allEnemies.indexOf(this);
+            allEnemies.splice(index, 1);
+            allEnemies.push(new Enemy());
+        }
     } else {
         this.x -= distance;
+        if(this.x < -200) {
+            var index = allEnemies.indexOf(this);
+            allEnemies.splice(index, 1);
+            allEnemies.push(new Enemy());
+        }
     }
 };
 
