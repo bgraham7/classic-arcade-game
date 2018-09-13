@@ -6,8 +6,8 @@ var Enemy = function() {
     this.x = this.direction == 'toRight'? -101 : 505;
     // Picks a random row between 1 and 3
     this.y =  Math.floor((Math.random() * 3) + 1) * 83;
-    // Picks a random speed between 1 and 5 tiles per second
-    this.speed = Math.floor((Math.random() * 5) + 1);
+    // Picks a random speed between 1 and 3 tiles per second
+    this.speed = Math.floor((Math.random() * 3) + 1);
     this.sprite = 'images/enemy-bug.png';
 };
 
