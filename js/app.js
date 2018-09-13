@@ -2,28 +2,24 @@
 var Enemy = function() {
     // Random left or right start
     this.direction = Math.random() > .5 ? 'toRight' : 'toLeft'
-    
     // Going Right starts on Left and visa versa
     this.x = this.direction == 'toRight'? 0 : 404;
     // Picks a random row between 1 and 3
     this.y =  Math.floor((Math.random() * 3) + 1) * 83;
-
-    
-
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    // Picks a random speed between 1 and 5 tiles per second
+    this.speed = Math.floor((Math.random() * 5) + 1);
     this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    distance = dt * this.speed * 101;
+    if(this.direction === 'toRight') {
+        this.x += distance;
+    } else {
+        this.x -= distance;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
