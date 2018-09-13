@@ -1,5 +1,15 @@
 // Enemies our player must avoid
 var Enemy = function() {
+    // Random left or right start
+    this.direction = Math.random() > .5 ? 'toRight' : 'toLeft'
+    
+    // Going Right starts on Left and visa versa
+    this.x = this.direction == 'toRight'? 0 : 404;
+    // Picks a random row between 1 and 3
+    this.y =  Math.floor((Math.random() * 3) + 1) * 83;
+
+    
+
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
