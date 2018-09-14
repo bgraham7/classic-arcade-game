@@ -8,6 +8,8 @@ var Enemy = function() {
     this.y =  Math.floor((Math.random() * 3) + 1) * 83;
     // Picks a random speed between 1 and 3 tiles per second
     this.speed = Math.floor((Math.random() * 3) + 1);
+    this.width = 50;
+    this.height = 50;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -18,16 +20,12 @@ Enemy.prototype.update = function(dt) {
     if(this.direction === 'toRight') {
         this.x += distance;
         if(this.x > 600) {
-            var index = allEnemies.indexOf(this);
-            allEnemies.splice(index, 1);
-            allEnemies.push(new Enemy());
+            this.recreate();
         }
     } else {
         this.x -= distance;
         if(this.x < -200) {
-            var index = allEnemies.indexOf(this);
-            allEnemies.splice(index, 1);
-            allEnemies.push(new Enemy());
+            this.recreate();
         }
     }
 };
@@ -37,18 +35,31 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.recreate = function() {
+    var index = allEnemies.indexOf(this);
+    allEnemies.splice(index, 1);
+    allEnemies.push(new Enemy());
+}
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
     this.x = 2 * 101;
     this.y = 5 * 83;
+    this.width = 50;
+    this.height = 50;
     this.sprite = 'images/char-boy.png'
 }
 
 Player.prototype.update = function() {
 
 };
+
+Player.prototype.collision = function() {
+    this.x = 2 * 101;
+    this.y = 5 * 83;
+}
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);

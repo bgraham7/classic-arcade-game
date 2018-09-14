@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -162,6 +162,28 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+    }
+
+    function checkCollisions() {
+        var collision = false;
+        allEnemies.forEach(function(enemy) {
+            if(collides(enemy, player)) {
+                collision = true;
+            }
+        });
+        if(collision) {
+            setTimeout(function() {
+                player.collision();
+            }, 100);
+        }
+    }
+
+    function collides(a, b)
+    {
+        if (a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y) return true;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
