@@ -1,6 +1,21 @@
-frontend-nanodegree-arcade-game
+# Arcade Game
 ===============================
+## Synopsis
+An arcade game similar to frogger. The player must cross the road in order to get points! Getting hit by a bug loses a life! The more points you get the harder the game will become.
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Requirements
+There are no dependencies! Just clone the repo and open up the index.html
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Contributors
+Feel free to contribute. I prefer you user Udacity style guides:  
+[CSS](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)  
+[HTML](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)  
+[JavaScript](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)  
+
+## License
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so
