@@ -59,6 +59,10 @@ Player.prototype.updateScore = function() {
     this.x = 2 * 101;
     this.y = 5 * 83;
     this.score+= 10;
+    if(this.score % 30 == 0) {
+        allEnemies.push(new Enemy());
+    }
+
     document.getElementById('score').innerHTML = this.score;
 }
 
@@ -73,7 +77,7 @@ Player.prototype.update = function() {
         setTimeout(function() {
             myPlayer.scoring = false;
             myPlayer.updateScore();
-        }, 100)
+        }, 100);
     }
 };
 
@@ -85,6 +89,11 @@ Player.prototype.collision = function() {
         this.lives = 3;
         this.score = 0;
         alert("No more lives! Try again.");
+        allEnemies = [
+            new Enemy(),
+            new Enemy(),
+            new Enemy(),
+        ];
         document.getElementById('score').innerHTML = this.score;
     }
     document.getElementById('lives').innerHTML = this.lives;
