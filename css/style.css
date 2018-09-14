@@ -1,3 +1,26 @@
 body {
     text-align: center;
 }
+
+#stats {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    top: 70px;
+    left: 50%;
+    transform:translateX(-240px);
+    -webkit-box-shadow: 3px 3px 21px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 21px -2px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 21px -2px rgba(0,0,0,0.75);
+    display:flex;
+    justify-content: flex-start;
+}
+
+p {
+    margin: 0;
+    padding: 6px 15px;
+    font-weight: bold;
+    font-family: sans-serif;
+}

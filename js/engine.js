@@ -164,8 +164,11 @@ var Engine = (function(global) {
         // noop
     }
 
+    var collision = false;
     function checkCollisions() {
-        var collision = false;
+        if(collision){
+            return;
+        }
         allEnemies.forEach(function(enemy) {
             if(collides(enemy, player)) {
                 collision = true;
@@ -173,6 +176,7 @@ var Engine = (function(global) {
         });
         if(collision) {
             setTimeout(function() {
+                collision = false;
                 player.collision();
             }, 100);
         }

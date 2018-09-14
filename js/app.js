@@ -45,6 +45,9 @@ Enemy.prototype.recreate = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+    this.lives = 3;
+    this.score = 0;
+    this.scoring = false;
     this.x = 2 * 101;
     this.y = 5 * 83;
     this.width = 50;
@@ -52,13 +55,39 @@ var Player = function() {
     this.sprite = 'images/char-boy.png'
 }
 
-Player.prototype.update = function() {
+Player.prototype.updateScore = function() {
+    this.x = 2 * 101;
+    this.y = 5 * 83;
+    this.score+= 10;
+    document.getElementById('score').innerHTML = this.score;
+}
 
+Player.prototype.update = function() {
+    if(this.scoring) {
+        return;
+    }
+    myPlayer = this;
+    if(this.y === 0) {
+        console.log("test");
+        this.scoring = true;
+        setTimeout(function() {
+            myPlayer.scoring = false;
+            myPlayer.updateScore();
+        }, 100)
+    }
 };
 
 Player.prototype.collision = function() {
     this.x = 2 * 101;
     this.y = 5 * 83;
+    this.lives--;
+    if(this.lives < 0) {
+        this.lives = 3;
+        this.score = 0;
+        alert("No more lives! Try again.");
+        document.getElementById('score').innerHTML = this.score;
+    }
+    document.getElementById('lives').innerHTML = this.lives;
 }
 
 Player.prototype.render = function() {
@@ -98,7 +127,9 @@ var allEnemies = [
     new Enemy(),
     new Enemy(),
     new Enemy()
-]
+];
+
+document.getElementById('stats');
 
 
 // This listens for key presses and sends the keys to your
