@@ -13,7 +13,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
+// Update the enemy's position based on random speed
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     distance = dt * this.speed * 101;
@@ -30,23 +30,22 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
-// Draw the enemy on the screen, required method for game
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Removes enemy and replaces it with a new one to start from left or right with random speed
 Enemy.prototype.recreate = function() {
     var index = allEnemies.indexOf(this);
     allEnemies.splice(index, 1);
     allEnemies.push(new Enemy());
 }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
 var Player = function() {
     this.lives = 3;
     this.score = 0;
+    // Used to prevent double scoring
     this.scoring = false;
     this.x = 2 * 101;
     this.y = 5 * 83;
@@ -55,6 +54,7 @@ var Player = function() {
     this.sprite = 'images/char-boy.png'
 }
 
+// Updated score, every 30 points adds a new enemy
 Player.prototype.updateScore = function() {
     this.x = 2 * 101;
     this.y = 5 * 83;
@@ -66,6 +66,7 @@ Player.prototype.updateScore = function() {
     document.getElementById('score').innerHTML = this.score;
 }
 
+// Checks players position, scores if at the top of screen
 Player.prototype.update = function() {
     if(this.scoring) {
         return;
@@ -81,6 +82,7 @@ Player.prototype.update = function() {
     }
 };
 
+// Handle player colllision with enemies. subtracts a life and resets game if less than 0
 Player.prototype.collision = function() {
     this.x = 2 * 101;
     this.y = 5 * 83;
@@ -99,6 +101,7 @@ Player.prototype.collision = function() {
     document.getElementById('lives').innerHTML = this.lives;
 }
 
+// Draws player on screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -138,11 +141,7 @@ var allEnemies = [
     new Enemy()
 ];
 
-document.getElementById('stats');
-
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Handle keypresses
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
