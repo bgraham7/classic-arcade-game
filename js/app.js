@@ -8,8 +8,8 @@ var Enemy = function() {
     this.y =  Math.floor((Math.random() * 3) + 1) * 83;
     // Picks a random speed between 1 and 3 tiles per second
     this.speed = Math.floor((Math.random() * 3) + 1);
-    this.width = 50;
-    this.height = 50;
+    this.width = 101;
+    this.height = 83;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -49,8 +49,8 @@ var Player = function() {
     this.scoring = false;
     this.x = 2 * 101;
     this.y = 5 * 83;
-    this.width = 50;
-    this.height = 50;
+    this.width = 101;
+    this.height = 83;
     this.sprite = 'images/char-boy.png'
 }
 
